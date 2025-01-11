@@ -31,7 +31,7 @@ jobs:
       # Step 4: Build .exe using PyInstaller
       - name: Run PyInstaller
         run: |
-          python -m PyInstaller -onefile chrome_history_editor.py  # Adjust if using a spec file
+          python -m PyInstaller --onefile chrome_history_editor.py  # Adjust if using a spec file
 
       # Step 5: Upload the .exe as an artifact
       - name: Upload artifact
