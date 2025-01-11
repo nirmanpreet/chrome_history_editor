@@ -1,175 +1,96 @@
+Chrome History Editor
+For those "doggy students" who didn’t finish their basement (a.k.a. homework) but still need to prove they were working on it!
+Overview
 
+Chrome History Editor is your new best friend, designed to help you manage and modify your Chrome browser history. Whether you need to prove you were actually researching, downloading files, or just need to clean up your browsing records, this Python-based tool is the perfect way to get your act together. You can modify URLs, update visit times, and even adjust those tricky download timestamps. The best part? It’s easy, thanks to a user-friendly interface!
+Important:
 
-# Chrome History Editor
+Backup your Chrome history file first! We all know accidents happen—like deleting that file with all your research! Always make a backup before diving in.
+Table of Contents
 
-## **Overview**
-Chrome History Editor is a Python-based graphical user interface (GUI) application that allows users to edit the browsing history stored in the **History** SQLite database of Google Chrome. The tool provides functionality to modify URL titles, visit times, and other browsing-related data.
+    Features
+    Prerequisites
+    Installation
+    Usage Instructions
+    Backup & Precautions
+    Notes
+    Contributing
+    License
 
-**Warning**: Modifying the browser history can have unintended consequences. Please ensure that you know what you're doing and **backup** your Chrome history file before making any changes.
+Features
 
----
+    Load History Database: Access your Chrome history database in no time.
+    Edit Entries: Change URLs, titles, and more—because you really were working on your project... right?
+    Update Timestamps: Fix those visit times or download timestamps to match your "studious" late-night sessions.
+    Simple GUI: A clean, easy-to-use interface powered by Tkinter—because who has time for complicated stuff?
 
-## **Table of Contents**
-1. [Prerequisites](#prerequisites)
-2. [Installation Instructions](#installation-instructions)
-3. [Running the Program](#running-the-program)
-4. [How to Use the Program](#how-to-use-the-program)
-5. [Backup & Precautions](#backup--precautions)
-6. [Important Notes](#important-notes)
-7. [Conclusion](#conclusion)
+Prerequisites
 
----
+Before you begin, make sure you’ve got the basics:
 
-## **Prerequisites**
+    Python 3.x installed (most of us have it by now, right?)
 
-To use the Chrome History Editor, you need to have **Python** installed along with a few required libraries.
+Installation
+Option 1: Download the Latest Release
 
-### **Required Software**:
-1. **Python** (version 3.x or above)  
-2. **pip** (Python package installer)  
+    Head over to the Releases page on GitHub.
+    Download the version that fits your system.
+    Run the executable or grab the ZIP file and execute the Python script.
 
----
+Option 2: Clone the Repository
 
-## **Installation Instructions**
+    Clone the repo using this command:
 
-### **Step 1: Install Python**
+git clone https://github.com/nirmanpreet/chrome_history_editor.git  
 
-#### **For Windows**:
-1. Download Python from the official Python website: [Download Python](https://www.python.org/downloads/).
-2. Run the installer and **ensure the option "Add Python to PATH" is checked**.
-3. Follow the installation prompts, then click "Install Now".
-4. Verify that Python is installed correctly by opening the Command Prompt and typing the following command:
+    Navigate to the project directory:
 
-   ```bash
-   python --version
-   ```
+cd chrome_history_editor  
 
-   This should output the installed Python version (e.g., `Python 3.x.x`).
+    Run the program:
 
----
+python chrome_history_editor.py  
 
-### **Step 2: Install Required Libraries**
+Usage Instructions
+Option 1: Using the Executable File
 
-The program requires a few external libraries. Install them by running the following commands in your command prompt:
+    Download the .exe from the Releases page.
+    Double-click it to launch the app. No setup needed. Simple!
 
-1. **tkinter** (for GUI interface)  
-2. **sqlite3** (for working with SQLite database)
+Option 2: Running the Python Script
 
-Run the following command:
+    Locate Your Chrome History File:
+        Windows: C:\Users\<YourUsername>\AppData\Local\Google\Chrome\User Data\Default\History
+        Mac: ~/Library/Application Support/Google/Chrome/Default/History
+        Linux: ~/.config/google-chrome/Default/History
 
-```bash
-pip install tkinter sqlite3
-```
+    Copy the file and place it in the folder with the script.
 
----
+    Run the script:
 
-### **Step 3: Download or Clone the Program**
+python chrome_history_editor.py  
 
-You can either download the ZIP file or clone the repository.
+    Load the Database:
+    Click the "Load Database" button and choose your copied History file.
 
-1. **Download the program:**
-   - Visit the official GitHub repository: [Chrome History Editor GitHub](https://github.com/nirmanpreet/chromehistoryeditor).
-   - Download the ZIP file, extract it, and place it in a directory.
+    Edit History:
+    Modify your URLs, titles, visit times, and even those downloads—yep, we see you downloading all that research at 3 AM!
 
-2. **Clone the repository** (if you have Git installed):
+    Save Changes:
+    The tool will save your changes automatically back into the database. You’ll be all set to prove you were on top of things (even if it was last minute).
 
-   ```bash
-   git clone https://github.com/nirmanpreet/chromehistoryeditor
-   cd chrome-history-editor
-   ```
+Backup and Precautions
 
----
+Backup, Backup, Backup!
+Before making any changes, create a backup. If you don’t, you might find yourself in the doghouse for real. The tool includes options to create and restore backups, but it’s always wise to manually back up first.
+Notes
 
-### **Step 4: Prepare the History File**
+    Close Chrome before using the program to avoid database conflicts (Chrome's not a fan of changes happening while it’s still open).
+    Be careful with edits—one wrong move and you could be showing off more than you bargained for (like those sneaky tabs you thought you closed).
 
-1. **Find Your Chrome History File**:
-   - The Chrome History file is stored in your user data directory at:
+Contributing
 
-     ```
-     C:\Users\YourUsername\AppData\Local\Google\Chrome\User Data\Default\History
-     ```
+Got any ideas to make this tool even more useful? Feel free to fork the repo, make improvements, and send a pull request. If you’ve found a bug or have a feature request, open an issue on GitHub.
+License
 
-   Replace `YourUsername` with your actual username on the computer.
-
-2. **Copy the History File**:
-   - Make a copy of the `History` file and **place it in the same directory** as the `chrome_history_editor.py` script.
-
----
-
-## **Running the Program**
-
-### **Step 1: Open Command Prompt**
-
-1. Open the **Command Prompt** on your system.
-
-2. **Navigate to the folder** where you saved the `chrome_history_editor.py` script. Use the `cd` command:
-
-   ```bash
-   cd path\to\your\script\folder
-   ```
-
-### **Step 2: Run the Script**
-
-Run the following command to start the Chrome History Editor:
-
-```bash
-python chrome_history_editor.py
-```
-
-This will launch the program, and you should see the graphical interface.
-
----
-
-## **How to Use the Program**
-
-1. **Load Data**: Click the **Load Data** button. This loads your Chrome history from the `History` SQLite database.
-
-2. **View and Edit Data**: You can view the URL, title, and last visit time in a table. You can double-click on the `Last Visit Time` field to edit it.
-
-3. **Edit URL and Title**: You can modify the URL and Title for each entry directly in the table. After making changes, click **Save Changes** to store them back in the database.
-
-4. **Change Visit Time**: You can modify the visit time and the program will convert it back to Chrome's epoch format (microseconds since January 1, 1601).
-
-5. **Delete Row**: Select a row and click the **Delete Row** button to remove that entry from the database.
-
-6. **Refresh Data**: Click **Refresh** to reload the current data from the database after making changes.
-
----
-
-## **Backup & Precautions**
-
-### **Backup Your Data**
-Before making any changes, **back up your History file** to avoid losing important data:
-
-1. Copy the `History` file from the following location:
-
-   ```
-   C:\Users\YourUsername\AppData\Local\Google\Chrome\User Data\Default\History
-   ```
-
-2. Place the backup in a safe location on your computer.
-
-3. To restore the backup, simply replace the edited `History` file with your backup file.
-
----
-
-## **Important Notes**
-
-1. **Close Google Chrome** before running this program. The program modifies the `History` file, and Chrome should not be running while this happens to avoid file corruption.
-
-2. **Ensure you have a backup** of your History file before editing it.
-
-3. **Be cautious when modifying the history**. Editing the history can affect your Chrome browsing data and syncing across devices.
-
----
-
-## **Conclusion**
-
-You have now successfully set up the Chrome History Editor and can use it to modify your browsing history in Google Chrome. Always remember to back up your data before making any changes, and use this program responsibly.
-
-Feel free to explore and customize the program to suit your needs. For any issues or suggestions, you can reach out via the GitHub repository or contact the author.
-
----
-
-### **Author**
-Nirmanpreet Singh
+This project is licensed under the MIT License. See the LICENSE file for more details.
