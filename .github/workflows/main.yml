@@ -38,7 +38,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: Windows_ChromeHistoryEditor
-          path: D:\a\chromehistoryeditor\chromehistoryeditor\build\chrome_history_editor\chrome_history_editor.exe  # Path to the built .exe file
+          path: D:\a\chrome_history_editor\chrome_history_editor\build\chrome_history_editor\chrome_history_editor.exe  # Path to the built .exe file
 
       # Step 6: Generate version based on today's date, starting from v0.0.1
       - name: Generate version tag
@@ -69,6 +69,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path:  D:\a\chromehistoryeditor\chromehistoryeditor\build\chrome_history_editor\chrome_history_editor.exe  # Path to the .exe file
+          asset_path: D:\a\chrome_history_editor\chrome_history_editor\build\chrome_history_editor\chrome_history_editor.exe  # Path to the .exe file
           asset_name: ChromeHistoryEditor-Windows-amd64.exe  # Name of the asset
           asset_content_type: application/zip  # Content type (adjust if needed)
