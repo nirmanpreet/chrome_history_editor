@@ -1,0 +1,73 @@
+name: Build and Release Python Executable
+
+on:
+  push:
+    branches:
+      - main  # Trigger on push to the main branch
+
+jobs:
+  build-windows:
+    runs-on: windows-latest  # Windows runner to build the .exe
+
+    outputs:
+      version_tag: ${{ steps.generate_version.outputs.version_tag }}  # Output the version tag to be used in other steps
+
+    steps:
+      # Step 1: Checkout the repository
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # Step 2: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'  # Adjust to your desired Python version
+
+      # Step 3: Install requirements
+      - name: Install dependencies
+        run: |
+          pip install pyinstaller
+
+      # Step 4: Build .exe using PyInstaller
+      - name: Run PyInstaller
+        run: |
+          python -m PyInstaller chrome_history_editor.py  # Adjust if using a spec file
+
+      # Step 5: Upload the .exe as an artifact
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Windows_ChromeHistoryEditor
+          path: D:\a\chromehistoryeditor\chromehistoryeditor\build\chrome_history_editor\chrome_history_editor.exe  # Path to the built .exe file
+
+      # Step 6: Generate version based on today's date, starting from v0.0.1
+      - name: Generate version tag
+        id: generate_version
+        run: |
+          $date = Get-Date -Format "yyyyMMdd"  # Format the current date as YYYYMMDD
+          $version = "v0.0.1-$date"  # Start with v0.0.1 and append the date
+          echo "Generated version tag: $version"
+          echo "::set-output name=version_tag::$version"  # Set the output for the version tag
+
+      # Step 7: Create a GitHub release with the date-based tag
+      - name: Create release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ steps.generate_version.outputs.version_tag }}  # Use the generated version tag
+          release_name: Release ${{ steps.generate_version.outputs.version_tag }}  # Name the release with the version (date)
+          draft: false
+          prerelease: false
+
+      # Step 8: Upload the release asset (the .exe)
+      - name: Upload Release Asset
+        id: upload-release-asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path:  D:\a\chromehistoryeditor\chromehistoryeditor\build\chrome_history_editor\chrome_history_editor.exe  # Path to the .exe file
+          asset_name: ChromeHistoryEditor-Windows-amd64.exe  # Name of the asset
+          asset_content_type: application/zip  # Content type (adjust if needed)
